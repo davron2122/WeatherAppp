@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +18,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.model.CurrentResponseApi
 import com.example.myapplication.viewModel.WeatherViewModel
 import com.github.matteobattilana.weather.PrecipType
+import eightbitlab.com.blurview.RenderScriptBlur
 import retrofit2.Call
 import retrofit2.Response
 
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             var name = "London"
 
 
+            //Current Temp
             cityTxt.text = name
             progressBar.visibility = View.VISIBLE
             weatherViewModel.loadCurrentWeather(lat, lan, "metric").enqueue(object :
@@ -88,6 +92,23 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+
+            //settings Blue View
+
+            var radius =10f
+            val decorView =window.decorView
+            val rootView=(decorView.findViewById(android.R.id.content)) as ViewGroup
+            val windowBackground =decorView.background
+
+            rootView?.let{
+               blueView.setupWith(it, RenderScriptBlur(this@MainActivity))
+                   .setFrameClearDrawable(windowBackground)
+                   .setBlurRadius(radius)
+                blueView.outlineProvider = ViewOutlineProvider.BACKGROUND
+                blueView.clipToOutline = true
+
+            }
+
 
         }
 

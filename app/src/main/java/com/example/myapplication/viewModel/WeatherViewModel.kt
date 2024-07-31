@@ -15,5 +15,4 @@ class WeatherViewModel (val repository: WeatherRepository): ViewModel() {
     fun loadForecastWeather(lat:Double, lng:Double,unit:String )=
         repository.getForecastWeather(lat, lng, unit)
 
-
 }

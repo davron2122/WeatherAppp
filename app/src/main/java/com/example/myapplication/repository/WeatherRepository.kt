@@ -10,7 +10,4 @@ class WeatherRepository (val api:ApiService){
     fun getForecastWeather(lat: Double, lng:Double, unit:String)=
         api.getForecastWeather(lat, lng, unit, "7558532c79ae918db4a6928698dc03e2")
 
-
-
-
 }
