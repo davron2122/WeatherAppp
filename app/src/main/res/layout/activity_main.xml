@@ -125,12 +125,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="-Km"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="3"
+                    android:text="-Km"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
 
@@ -138,14 +138,14 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
                     android:text="Wind"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="3"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>
@@ -176,28 +176,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
                     android:text="-%"
-                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="3"/>
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/textView_right2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
                     android:text="Humidity"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="3"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>
@@ -288,6 +288,30 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/forecastView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </eightbitlab.com.blurview.BlurView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
