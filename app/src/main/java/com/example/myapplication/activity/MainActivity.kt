@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                         data?.let {
                             statusTxt.text = it.weather?.get(0)?.main ?: "-"
                             windTxt.text = it.wind?.speed.let { Math.round(it!!).toString() } + "KM"
+                            humidityTxt.text=it.main?.humidity?.toString()+"%"
                             currentTempTxt.text =
                                 it.main?.temp.let { Math.round(it!!).toString() } + "°"
                             maxTempTxt.text =
@@ -71,9 +72,10 @@ class MainActivity : AppCompatActivity() {
 
                             val drawable = if (isNightNow()) R.drawable.night_bg
                             else {
-                              setDynamicallyWallpaper(it.weather?.get(0)?.icon?:"-")
+                                setDynamicallyWallpaper(it.weather?.get(0)?.icon ?: "-")
                             }
-                            bgImage.set
+                            bgImage.setImageResource(drawable)
+                            setEffectRainSnow(it.weather?.get(0)?.icon ?: "-")
 
                         }
 
@@ -94,20 +96,21 @@ class MainActivity : AppCompatActivity() {
     private fun isNightNow(): Boolean {
         return calendar.get(Calendar.HOUR_OF_DAY) >= 18
     }
-    private fun setDynamicallyWallpaper(icon:String):Int{
+
+    private fun setDynamicallyWallpaper(icon: String): Int {
         return when (icon.dropLast(1)) {
             "01" -> {
                 initWeatherView(PrecipType.CLEAR)
                 R.drawable.snow_bg
             }
 
-            "02", "03", "04"-> {
+            "02", "03", "04" -> {
                 initWeatherView(PrecipType.CLEAR)
                 R.drawable.cloudy_bg
 
             }
 
-            "09", "10", "11"  -> {
+            "09", "10", "11" -> {
                 initWeatherView(PrecipType.RAIN)
                 R.drawable.rainy_bg
             }
@@ -121,20 +124,83 @@ class MainActivity : AppCompatActivity() {
                 initWeatherView(PrecipType.CLEAR)
                 R.drawable.snow_bg
             }
+
             else -> 0
         }
 
-        }
-        private fun initWeatherView (type:PrecipType){
-            binding.weatherView.apply {
-                setWeatherData(type)
-                angle = 20
-                emissionRate = 100.0f
+    }
+
+    private fun setEffectRainSnow(icon: String) {
+        when (icon.dropLast(1)) {
+            "01" -> {
+                initWeatherView(PrecipType.CLEAR)
+
             }
 
+            "02", "03", "04" -> {
+                initWeatherView(PrecipType.CLEAR)
+
+
+            }
+
+            "09", "10", "11" -> {
+                initWeatherView(PrecipType.RAIN)
+
+            }
+
+            "13" -> {
+                initWeatherView(PrecipType.SNOW)
+
+            }
+
+            "50" -> {
+                initWeatherView(PrecipType.CLEAR)
+
+            }
+
+            else -> 0
+        }
+
+    }
+
+    private fun initWeatherView(type: PrecipType) {
+        binding.weatherView.apply {
+            setWeatherData(type)
+            angle = 20
+            emissionRate = 100.0f
+        }
 
 
     }
 
 
 }
+//weatherViewModel.loadCurrentWeather(lat, lan, "metric").enqueue(object :
+//    retrofit2.Callback<CurrentResponseApi> {
+//    override fun onResponse(
+//        call: Call<CurrentResponseApi>,
+//        response: Response<CurrentResponseApi>
+//    ) {
+//        if (response.isSuccessful) {
+//            val data = response.body()
+//            progressBar.visibility = View.GONE
+//            detailedlayout.visibility = View.VISIBLE
+//            data?.let {
+//                statusTxt.text = it.weather?.get(0)?.main ?: "-"
+//                windTxt.text = it.wind?.speed.let { Math.round(it!!).toString() } + "KM"
+//                currentTempTxt.text =
+//                    it.main.temp.let { Math.round(it!!).toString() } + "°"
+//                maxTempTxt.text =
+//                    it.main?.tempMax.let { Math.round(it!!).toString() } + "°"
+//                minTempTxt.text =
+//                    it.main?.tempMin.let { Math.round(it!!).toString() } + "°"
+//
+//
+//                val drawable = if (isNightNow()) R.drawable.night_bg
+//                else {
+//                    setDynamicallyWallpaper(it.weather?.get(0)?.icon ?: "-")
+//                }
+//                bgImage.setImageResource(drawable)
+//                setEffectRainSnow(it.weather?.get(0)?.icon ?: "-")
+//
+//            }
