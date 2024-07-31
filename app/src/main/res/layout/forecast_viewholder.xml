@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="140dp"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="4dp">
+
+
+    <TextView
+        android:id="@+id/nameDayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:text="TextView"
+        android:shadowRadius="3"
+        android:shadowDy="1"
+        android:shadowDx="1"
+        android:shadowColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/hourTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text="TextView"
+        android:shadowRadius="3"
+        android:shadowDy="1"
+        android:shadowDx="1"
+        android:shadowColor="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/sunny"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tempTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:text="TextView"
+        android:shadowRadius="3"
+        android:shadowDy="1"
+        android:shadowDx="1"
+        android:shadowColor="@color/black"
+        />
+
+</LinearLayout>
