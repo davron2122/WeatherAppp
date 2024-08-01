@@ -17,7 +17,7 @@ interface ApiService {
     ): Call<CurrentResponseApi>
 
 
-    @GET("data/2.5/weather")
+    @GET("data/2.5/forecast")
     fun getForecastWeather(
         @Query("lat") lat:Double,
         @Query("lon") lon:Double,

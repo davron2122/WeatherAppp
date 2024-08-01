@@ -8,23 +8,18 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.adapter.ForecastAdapter
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.model.CurrentResponseApi
-import com.example.myapplication.model.ForecastResponseApi
 import com.example.myapplication.viewModel.WeatherViewModel
 import com.github.matteobattilana.weather.PrecipType
 import eightbitlab.com.blurview.RenderScriptBlur
 import retrofit2.Call
 import retrofit2.Response
-
-import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
 
@@ -126,7 +121,13 @@ class MainActivity : AppCompatActivity() {
                         blueView.visibility=View.VISIBLE
 
                         data?.let {
-                            forecastAdapter.di
+                            forecastAdapter.differ.submitList(it.list)
+                            forecastView.apply {
+                                layoutManager=LinearLayoutManager(
+                                    this@MainActivity,
+                                    LinearLayoutManager.HORIZONTAL,
+                                    false
+                                ) }
                         }
 
                     }

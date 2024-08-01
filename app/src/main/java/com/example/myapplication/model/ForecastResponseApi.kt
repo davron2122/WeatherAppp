@@ -6,16 +6,18 @@ import com.google.gson.annotations.SerializedName
 data class ForecastResponseApi(
     @SerializedName("city")
     val city: City?,
+    @SerializedName("cnt")
+    val cnt: Int?,
     @SerializedName("cod")
     val cod: String?,
     @SerializedName("list")
     val list: List<data>?,
     @SerializedName("message")
-    val message: Int?,
-    @SerializedName("")
-    val x: Int?
+    val message: Int?
 ) {
     data class City(
+        @SerializedName("coord")
+        val coord: Coord?,
         @SerializedName("country")
         val country: String?,
         @SerializedName("id")
@@ -28,13 +30,24 @@ data class ForecastResponseApi(
         val sunrise: Int?,
         @SerializedName("sunset")
         val sunset: Int?,
-        @SerializedName("")
-        val x: Int?
-    )
+        @SerializedName("timezone")
+        val timezone: Int?
+    ) {
+        data class Coord(
+            @SerializedName("lat")
+            val lat: Double?,
+            @SerializedName("lon")
+            val lon: Double?
+        )
+    }
 
     data class data(
         @SerializedName("clouds")
         val clouds: Clouds?,
+        @SerializedName("dt")
+        val dt: Int?,
+        @SerializedName("dt_txt")
+        val dtTxt: String?,
         @SerializedName("main")
         val main: Main?,
         @SerializedName("pop")
@@ -48,26 +61,32 @@ data class ForecastResponseApi(
         @SerializedName("weather")
         val weather: List<Weather?>?,
         @SerializedName("wind")
-        val wind: Wind?,
-        @SerializedName("")
-        val dtTxt: String?
+        val wind: Wind?
     ) {
-
-
         data class Clouds(
             @SerializedName("all")
             val all: Int?
         )
 
         data class Main(
+            @SerializedName("feels_like")
+            val feelsLike: Double?,
+            @SerializedName("grnd_level")
+            val grndLevel: Int?,
             @SerializedName("humidity")
             val humidity: Int?,
             @SerializedName("pressure")
             val pressure: Int?,
+            @SerializedName("sea_level")
+            val seaLevel: Int?,
             @SerializedName("temp")
             val temp: Double?,
-            @SerializedName("")
-            val x: Double?
+            @SerializedName("temp_kf")
+            val tempKf: Double?,
+            @SerializedName("temp_max")
+            val tempMax: Double?,
+            @SerializedName("temp_min")
+            val tempMin: Double?
         )
 
         data class Rain(
@@ -97,9 +116,7 @@ data class ForecastResponseApi(
             @SerializedName("gust")
             val gust: Double?,
             @SerializedName("speed")
-            val speed: Double?,
-            @SerializedName("")
-            val x: Int?
+            val speed: Double?
         )
     }
 }

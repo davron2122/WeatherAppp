@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ForecastViewholderBinding
-import com.example.myapplication.model.ForecastResponseApi
 import java.text.SimpleDateFormat
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(){
 
     private lateinit var binding: ForecastViewholderBinding
+
+    val  differ =AsyncListDiffer(this, differCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastAdapter.ViewHolder {
        val inflater =LayoutInflater.from(parent.context)
         binding= ForecastViewholderBinding.inflate(inflater, parent,false)
@@ -92,11 +93,12 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(){
             return oldItem == newItem
 
         }
-    }
-        val  differ =AsyncListDiffer(this, differCallback)
-
 
     }
+
+
+
+
 
 
 
