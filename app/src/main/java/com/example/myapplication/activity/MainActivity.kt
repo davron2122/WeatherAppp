@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.R
+import com.example.myapplication.adapter.ForecastAdapter
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.model.CurrentResponseApi
+import com.example.myapplication.model.ForecastResponseApi
 import com.example.myapplication.viewModel.WeatherViewModel
 import com.github.matteobattilana.weather.PrecipType
 import eightbitlab.com.blurview.RenderScriptBlur
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private val weatherViewModel: WeatherViewModel by viewModels()
 
     private val calendar by lazy { Calendar.getInstance() }
+
+    private  val forecastAdapter by lazy { ForecastAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,6 +112,34 @@ class MainActivity : AppCompatActivity() {
                 blueView.clipToOutline = true
 
             }
+
+
+            //forecast Temp
+
+            weatherViewModel.loadForecastWeather(lat, lan, "metric").enqueue(object : retrofit2.Callback<ForecastResponseApi>{
+                override fun onResponse(
+                    call: Call<ForecastResponseApi>,
+                    response: Response<ForecastResponseApi>
+                ) {
+                    if (response.isSuccessful){
+                        val data =response.body()
+                        blueView.visibility=View.VISIBLE
+
+                        data?.let {
+                            forecastAdapter.di
+                        }
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ForecastResponseApi>, t: Throwable) {
+
+                }
+
+            }
+
+
+            )
 
 
         }

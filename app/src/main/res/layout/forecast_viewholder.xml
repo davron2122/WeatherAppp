@@ -53,5 +53,17 @@
         android:shadowDx="1"
         android:shadowColor="@color/black"
         />
+    <TextView
+        android:id="@+id/dtTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:text="TextView"
+        android:shadowRadius="3"
+        android:shadowDy="1"
+        android:shadowDx="1"
+        android:shadowColor="@color/black"/>
 
 </LinearLayout>

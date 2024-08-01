@@ -50,8 +50,10 @@ data class ForecastResponseApi(
         @SerializedName("wind")
         val wind: Wind?,
         @SerializedName("")
-        val x: String?
+        val dtTxt: String?
     ) {
+
+
         data class Clouds(
             @SerializedName("all")
             val all: Int?

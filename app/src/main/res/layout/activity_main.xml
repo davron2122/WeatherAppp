@@ -293,7 +293,7 @@
         android:id="@+id/blueView"
         android:layout_width="match_parent"
         android:layout_height="143dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="@drawable/forecast_bg"
         app:blurOverlayColor="#10ffffff"
         android:layout_marginStart="24dp"
