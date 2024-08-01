@@ -15,6 +15,7 @@ import com.example.myapplication.R
 import com.example.myapplication.adapter.ForecastAdapter
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.model.CurrentResponseApi
+import com.example.myapplication.model.ForecastResponseApi
 import com.example.myapplication.viewModel.WeatherViewModel
 import com.github.matteobattilana.weather.PrecipType
 import eightbitlab.com.blurview.RenderScriptBlur
@@ -96,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
             var radius =10f
             val decorView =window.decorView
-            val rootView=(decorView.findViewById(android.R.id.content)) as ViewGroup
+            val rootView=(decorView.findViewById(android.R.id.content) as ViewGroup?)
             val windowBackground =decorView.background
 
             rootView?.let{
@@ -111,8 +112,10 @@ class MainActivity : AppCompatActivity() {
 
             //forecast Temp
 
-            weatherViewModel.loadForecastWeather(lat, lan, "metric").enqueue(object : retrofit2.Callback<ForecastResponseApi>{
+            weatherViewModel.loadForecastWeather(lat, lan, "metric")
+                .enqueue(object : retrofit2.Callback<ForecastResponseApi>{
                 override fun onResponse(
+
                     call: Call<ForecastResponseApi>,
                     response: Response<ForecastResponseApi>
                 ) {
@@ -127,7 +130,10 @@ class MainActivity : AppCompatActivity() {
                                     this@MainActivity,
                                     LinearLayoutManager.HORIZONTAL,
                                     false
-                                ) }
+                                )
+                                adapter = forecastAdapter
+
+                            }
                         }
 
                     }

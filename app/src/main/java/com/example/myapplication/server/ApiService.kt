@@ -1,5 +1,6 @@
 package com.example.myapplication.server
 
+import androidx.viewpager2.widget.ViewPager2.OffscreenPageLimit
 import com.example.myapplication.model.CurrentResponseApi
 import com.example.myapplication.model.ForecastResponseApi
 import retrofit2.Call
@@ -26,6 +27,11 @@ interface ApiService {
     ): Call<ForecastResponseApi>
 
 
-
+    @GET("geo/1.0/direct")
+    fun getCitiesList(
+        @Query("q") q: String,
+        @Query("limit")limit:Int,
+        @Query("appid") ApiKey: String
+    ):Call<CurrentResponseApi>
 
 }

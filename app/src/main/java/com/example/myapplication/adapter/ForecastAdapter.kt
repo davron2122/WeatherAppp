@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter
 
+import android.annotation.SuppressLint
 import android.icu.util.Calendar
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ForecastViewholderBinding
+import com.example.myapplication.model.ForecastResponseApi
 import java.text.SimpleDateFormat
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(){
@@ -22,10 +24,11 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(){
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ForecastAdapter.ViewHolder, position: Int) {
         val binding=ForecastViewholderBinding.bind(holder.itemView)
         val date =
-            SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").parse(differ.currentList[position].dtTxt.toString())
+            SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(differ.currentList[position].dtTxt.toString())
         val calendar=Calendar.getInstance()
         calendar.time=date
 
@@ -95,6 +98,8 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(){
         }
 
     }
+
+
 
 
 
