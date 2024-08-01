@@ -34,4 +34,5 @@ interface ApiService {
         @Query("appid") ApiKey: String
     ):Call<CurrentResponseApi>
 
+
 }

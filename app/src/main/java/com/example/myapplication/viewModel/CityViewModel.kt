@@ -10,4 +10,5 @@ class CityViewModel(val repository: CityRepository)  : ViewModel() {
 
     fun loadCity(q: String, limit:Int) =
         repository.getCities(q, limit)
+
 }

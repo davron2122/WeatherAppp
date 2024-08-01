@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private val calendar by lazy { Calendar.getInstance() }
 
-    private  val forecastAdapter by lazy { ForecastAdapter() }
+    private val forecastAdapter by lazy { ForecastAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                         data?.let {
                             statusTxt.text = it.weather?.get(0)?.main ?: "-"
                             windTxt.text = it.wind?.speed.let { Math.round(it!!).toString() } + "KM"
-                            humidityTxt.text=it.main?.humidity?.toString()+"%"
+                            humidityTxt.text = it.main?.humidity?.toString() + "%"
                             currentTempTxt.text =
                                 it.main?.temp.let { Math.round(it!!).toString() } + "°"
                             maxTempTxt.text =
@@ -95,15 +95,15 @@ class MainActivity : AppCompatActivity() {
 
             //settings Blue View
 
-            var radius =10f
-            val decorView =window.decorView
-            val rootView=(decorView.findViewById(android.R.id.content) as ViewGroup?)
-            val windowBackground =decorView.background
+            var radius = 10f
+            val decorView = window.decorView
+            val rootView = (decorView.findViewById(android.R.id.content) as ViewGroup?)
+            val windowBackground = decorView.background
 
-            rootView?.let{
-               blueView.setupWith(it, RenderScriptBlur(this@MainActivity))
-                   .setFrameClearDrawable(windowBackground)
-                   .setBlurRadius(radius)
+            rootView?.let {
+                blueView.setupWith(it, RenderScriptBlur(this@MainActivity))
+                    .setFrameClearDrawable(windowBackground)
+                    .setBlurRadius(radius)
                 blueView.outlineProvider = ViewOutlineProvider.BACKGROUND
                 blueView.clipToOutline = true
 
@@ -113,40 +113,40 @@ class MainActivity : AppCompatActivity() {
             //forecast Temp
 
             weatherViewModel.loadForecastWeather(lat, lan, "metric")
-                .enqueue(object : retrofit2.Callback<ForecastResponseApi>{
-                override fun onResponse(
+                .enqueue(object : retrofit2.Callback<ForecastResponseApi> {
+                    override fun onResponse(
 
-                    call: Call<ForecastResponseApi>,
-                    response: Response<ForecastResponseApi>
-                ) {
-                    if (response.isSuccessful){
-                        val data =response.body()
-                        blueView.visibility=View.VISIBLE
+                        call: Call<ForecastResponseApi>,
+                        response: Response<ForecastResponseApi>
+                    ) {
+                        if (response.isSuccessful) {
+                            val data = response.body()
+                            blueView.visibility = View.VISIBLE
 
-                        data?.let {
-                            forecastAdapter.differ.submitList(it.list)
-                            forecastView.apply {
-                                layoutManager=LinearLayoutManager(
-                                    this@MainActivity,
-                                    LinearLayoutManager.HORIZONTAL,
-                                    false
-                                )
-                                adapter = forecastAdapter
+                            data?.let {
+                                forecastAdapter.differ.submitList(it.list)
+                                forecastView.apply {
+                                    layoutManager = LinearLayoutManager(
+                                        this@MainActivity,
+                                        LinearLayoutManager.HORIZONTAL,
+                                        false
+                                    )
+                                    adapter = forecastAdapter
 
+                                }
                             }
+
                         }
+                    }
+
+                    override fun onFailure(call: Call<ForecastResponseApi>, t: Throwable) {
 
                     }
-                }
-
-                override fun onFailure(call: Call<ForecastResponseApi>, t: Throwable) {
 
                 }
 
-            }
 
-
-            )
+                )
 
 
         }
