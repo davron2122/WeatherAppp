@@ -64,7 +64,7 @@ class CityListActivity : AppCompatActivity() {
                                 if (response.isSuccessful) {
                                     val data = response.body()
                                     data?.let {
-                                        progressBar3.visibility = View.GONE
+                                        progressBar3.visibility = View.VISIBLE
                                         cityAdapter.differ.submitList(it)
                                         cityView.apply {
                                             layoutManager = LinearLayoutManager(
@@ -72,6 +72,7 @@ class CityListActivity : AppCompatActivity() {
                                                 LinearLayoutManager.HORIZONTAL,
                                                 false
                                             )
+                                          adapter = cityAdapter
                                         }
                                     }
                                 }

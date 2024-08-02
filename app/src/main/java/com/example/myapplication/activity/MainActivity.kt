@@ -57,8 +57,7 @@ class MainActivity : AppCompatActivity() {
                 name = "London"
             }
             AddCity.setOnClickListener {
-                val intent = Intent(this@MainActivity, CityListActivity::class.java)
-                startActivity(intent)
+                startActivity((Intent(this@MainActivity,CityListActivity::class.java)))
 
             }
 
@@ -232,7 +231,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            else -> 0
+
         }
 
     }
