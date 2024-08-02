@@ -1,5 +1,6 @@
 package com.example.myapplication.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -44,15 +45,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            var lat = 51.50
-            var lan = -0.12
-            var name = "London"
+
+            var lat = intent.getDoubleExtra("lat", 0.0)
+            var lon = intent.getDoubleExtra("lon", 0.0)
+            var name = intent.getStringExtra("name")
+
+
+            if (lat == 0.0) {
+                lat = 51.50
+                lon = -0.12
+                name = "London"
+            }
+            AddCity.setOnClickListener {
+                val intent = Intent(this@MainActivity, CityListActivity::class.java)
+                startActivity(intent)
+
+            }
 
 
             //Current Temp
             cityTxt.text = name
             progressBar.visibility = View.VISIBLE
-            weatherViewModel.loadCurrentWeather(lat, lan, "metric").enqueue(object :
+            weatherViewModel.loadCurrentWeather(lat, lon, "metric").enqueue(object :
                 retrofit2.Callback<CurrentResponseApi> {
                 override fun onResponse(
                     call: Call<CurrentResponseApi>,
@@ -112,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
             //forecast Temp
 
-            weatherViewModel.loadForecastWeather(lat, lan, "metric")
+            weatherViewModel.loadForecastWeather(lat, lon, "metric")
                 .enqueue(object : retrofit2.Callback<ForecastResponseApi> {
                     override fun onResponse(
 

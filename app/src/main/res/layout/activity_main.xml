@@ -41,8 +41,7 @@
             android:layout_marginTop="40dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/plus"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/plus" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -293,12 +292,12 @@
         android:id="@+id/blueView"
         android:layout_width="match_parent"
         android:layout_height="143dp"
-        android:visibility="gone"
-        android:background="@drawable/forecast_bg"
-        app:blurOverlayColor="#10ffffff"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/forecast_bg"
+        android:visibility="gone"
+        app:blurOverlayColor="#10ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -313,9 +312,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
