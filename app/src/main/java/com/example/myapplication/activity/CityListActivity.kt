@@ -72,7 +72,7 @@ class CityListActivity : AppCompatActivity() {
                                                 LinearLayoutManager.HORIZONTAL,
                                                 false
                                             )
-                                          adapter = cityAdapter
+                                            adapter = cityAdapter
                                         }
                                     }
                                 }

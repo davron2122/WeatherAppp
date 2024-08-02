@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 name = "London"
             }
             AddCity.setOnClickListener {
-                startActivity((Intent(this@MainActivity,CityListActivity::class.java)))
+                startActivity((Intent(this@MainActivity, CityListActivity::class.java)))
 
             }
 
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         return when (icon.dropLast(1)) {
             "01" -> {
                 initWeatherView(PrecipType.CLEAR)
-                R.drawable.snow_bg
+                R.drawable.sunny_bg
             }
 
             "02", "03", "04" -> {
@@ -199,6 +199,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             else -> 0
+
+
         }
 
     }
