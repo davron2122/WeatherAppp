@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-
+// current weather
     @GET("data/2.5/weather")
     fun getCurrentWeather(
         @Query("lat") lat: Double,
@@ -18,7 +18,7 @@ interface ApiService {
         @Query("appid") ApiKey: String,
     ): Call<CurrentResponseApi>
 
-
+// forecast for future
     @GET("data/2.5/forecast")
     fun getForecastWeather(
         @Query("lat") lat: Double,
@@ -27,7 +27,7 @@ interface ApiService {
         @Query("appid") ApiKey: String,
     ): Call<ForecastResponseApi>
 
-
+// cities in the world
     @GET("geo/1.0/direct")
     fun getCitiesList(
         @Query("q") q: String,

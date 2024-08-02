@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val data = response.body()
                         progressBar.visibility = View.GONE
-                        detailedlayout.visibility = View.VISIBLE
+                        detailedLayout.visibility = View.VISIBLE
                         data?.let {
                             statusTxt.text = it.weather?.get(0)?.main ?: "-"
                             windTxt.text = it.wind?.speed.let { Math.round(it!!).toString() } + "KM"
