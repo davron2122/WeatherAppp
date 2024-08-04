@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
@@ -19,6 +20,7 @@ import com.example.myapplication.model.CurrentResponseApi
 import com.example.myapplication.model.ForecastResponseApi
 import com.example.myapplication.viewModel.WeatherViewModel
 import com.github.matteobattilana.weather.PrecipType
+import com.google.firebase.messaging.FirebaseMessaging
 import eightbitlab.com.blurview.RenderScriptBlur
 import retrofit2.Call
 import retrofit2.Response
@@ -37,6 +39,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.d("FCM", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            val deviceToken = task.result
+            Log.d("FCM", "Device token: $deviceToken")
+        }
+
 
 
         window.apply {
